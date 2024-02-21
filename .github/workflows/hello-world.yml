@@ -13,10 +13,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Run a multi-line script
-        run: |
-          echo This is a build step command №1.
-          echo This is a build step command №2.
+      - name: Set-up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'corretto'
+          java-version: 11
+      - name: Compile binaries
+        run: mvn compile
           
   automation:
     name: "Automation"
