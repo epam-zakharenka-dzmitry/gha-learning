@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    name: "Build"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,6 +19,7 @@ jobs:
           echo This is a build step command №2.
           
   automation:
+    name: "Automation"
     runs-on: ubuntu-latest
     needs: [ "build" ]
     steps:
