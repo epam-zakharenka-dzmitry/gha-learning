@@ -1,4 +1,4 @@
-name: Regression
+name: gha-allure-report-with-history
 
 on:
   push:
