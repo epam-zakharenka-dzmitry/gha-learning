@@ -6,11 +6,13 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: checking out gh-pages branch
+      uses: actions/checkout@v2
+      with:
+        ref: gh-pages
 
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
@@ -21,6 +23,14 @@ jobs:
       run: mvn -B test --file pom.xml
 
     - name: Publish Allure Report
-      uses: mgrybyk/git-commit-pull-push-action@v1
+      uses: mgrybyk/allure-report-branch-action@master
       with:
         allure_results: allure-results
+
+    - name: Git Commit and Push Action
+      uses: mgrybyk/git-commit-pull-push-action@v1
+      if: always()
+      with:
+        repository: gh-pages-dir
+        branch: gh-pages
+        pull_args: --rebase -X ours
