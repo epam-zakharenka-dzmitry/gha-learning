@@ -23,7 +23,7 @@ jobs:
       run: mvn -B test --file pom.xml
 
     - name: Publish Allure Report
-      uses: mgrybyk/allure-report-branch-action@master
+      uses: mgrybyk/allure-report-branch-action@v1
       with:
         allure_results: allure-results
 
