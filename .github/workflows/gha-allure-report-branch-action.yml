@@ -1,4 +1,4 @@
-name: Maven Test and Allure Report
+name: gha-allure-report-branch-action
 
 on:
   # Allows you to run this workflow manually from the Actions tab
@@ -21,6 +21,6 @@ jobs:
       run: mvn -B test --file pom.xml
 
     - name: Publish Allure Report
-      uses: mgrybyk/allure-report-branch-action@master
+      uses: mgrybyk/git-commit-pull-push-action@v1
       with:
         allure_results: allure-results
