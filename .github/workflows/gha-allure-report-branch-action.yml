@@ -36,6 +36,11 @@ jobs:
           java-version: 11
       - name: Run automation tests
         run: mvn test
+
+      - name: Switch to another branch   # switch to a different branch
+        run: |
+          git fetch         # fetch all branch info
+          git checkout gh-pages   # change to desired branch
     
       - name: Allure Report Action
         uses: mgrybyk/allure-report-branch-action@v1
