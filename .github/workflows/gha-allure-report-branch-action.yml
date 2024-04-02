@@ -37,15 +37,23 @@ jobs:
       - name: Run automation tests
         run: mvn test
 
-      - name: Switch to 'gh-pages' branch   # switch to a different branch
-        run: |
-          git fetch         # fetch all branch info
-          git checkout gh-pages   # change to desired branch
+      #- name: Switch to 'gh-pages' branch   # switch to a different branch
+      #  run: |
+      #    git fetch         # fetch all branch info
+      #    git checkout gh-pages   # change to desired branch
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v3
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages # branch name
+          path: gh-pages-dir # checkout path
     
       - name: Allure Report Action
         uses: mgrybyk/allure-report-branch-action@v1
         if: always()
-        #continue-on-error: true
+        continue-on-error: true
         id: allure # used in comment to PR
         with:
           report_id: 'self-test'
@@ -56,5 +64,6 @@ jobs:
         uses: mgrybyk/git-commit-pull-push-action@v1
         if: always()
         with:
+          repository: gh-pages-dir
           branch: gh-pages
           pull_args: --rebase -X ours
