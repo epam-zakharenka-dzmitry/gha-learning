@@ -51,7 +51,7 @@ jobs:
           path: gh-pages-dir # checkout path
   
       - name: Allure Report Action
-        uses: mgrybyk/allure-report-branch-action@v1
+        uses: epam-zakharenka-dzmitry/allure-report-branch-action@master
         if: always()
         continue-on-error: false
         id: allure
