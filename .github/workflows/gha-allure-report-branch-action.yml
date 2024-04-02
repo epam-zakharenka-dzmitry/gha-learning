@@ -47,12 +47,12 @@ jobs:
         uses: mgrybyk/allure-report-branch-action@v1
         if: always()
         continue-on-error: true
-        #id: allure # used in comment to PR
+        id: allure # used in comment to PR
         with:
-          report_id: 'self-test'
+          report_id: 'allure'
           gh_pages: 'gh-pages-dir'
-          report_dir: 'allure-results'
-          list_dirs: ${{ github.ref == 'refs/heads/main' }}
+          report_dir: '../allure-results'
+          list_dirs: true
       - name: Git Commit and Push Action
         uses: mgrybyk/git-commit-pull-push-action@v1
         if: always()
