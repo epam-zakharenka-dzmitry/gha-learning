@@ -37,7 +37,7 @@ jobs:
       - name: Run automation tests
         run: mvn test
 
-      - name: Switch to another branch   # switch to a different branch
+      - name: Switch to 'gh-pages' branch   # switch to a different branch
         run: |
           git fetch         # fetch all branch info
           git checkout gh-pages   # change to desired branch
@@ -49,13 +49,11 @@ jobs:
         id: allure # used in comment to PR
         with:
           report_id: 'self-test'
-          gh_pages: 'gh-pages-dir'
           report_dir: 'allure-results'
     
       - name: Git Commit and Push Action
         uses: mgrybyk/git-commit-pull-push-action@v1
         if: always()
         with:
-          repository: gh-pages-dir
           branch: gh-pages
           pull_args: --rebase -X ours
