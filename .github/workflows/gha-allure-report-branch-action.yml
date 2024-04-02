@@ -36,14 +36,6 @@ jobs:
           java-version: 11
       - name: Run automation tests
         run: mvn test
-
-      - name: Checkout gh-pages
-        uses: actions/checkout@v3
-        if: always()
-        continue-on-error: true
-        with:
-          ref: gh-pages # branch name
-          path: gh-pages-dir # checkout path
     
       - name: Allure Report Action
         uses: mgrybyk/allure-report-branch-action@v1
