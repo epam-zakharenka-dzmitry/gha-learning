@@ -45,7 +45,7 @@ jobs:
       - name: Checkout gh-pages
         uses: actions/checkout@v3
         if: always()
-        continue-on-error: true
+        continue-on-error: false
         with:
           ref: gh-pages # branch name
           path: gh-pages-dir # checkout path
@@ -53,7 +53,7 @@ jobs:
       - name: Allure Report Action
         uses: mgrybyk/allure-report-branch-action@v1
         if: always()
-        continue-on-error: true
+        continue-on-error: false
         id: allure
         with:
           report_id: 'allure'
