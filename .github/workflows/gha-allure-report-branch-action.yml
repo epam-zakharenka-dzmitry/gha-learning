@@ -37,10 +37,11 @@ jobs:
       - name: Run automation tests
         run: mvn test
 
-      #- name: Switch to 'gh-pages' branch   # switch to a different branch
-      #  run: |
-      #    git fetch         # fetch all branch info
-      #    git checkout gh-pages   # change to desired branch
+      - name: Switch to 'gh-pages' branch   # switch to a different branch
+        run: |
+          git fetch         # fetch all branch info
+          git checkout gh-pages   # change to desired branch
+          cd gh-pages
   
       - name: Allure Report Action
         uses: epam-zakharenka-dzmitry/allure-report-branch-action@main
@@ -57,3 +58,4 @@ jobs:
         with:
           repository: gh-pages
           branch: gh-pages
+          pull_args: --rebase -X ours
