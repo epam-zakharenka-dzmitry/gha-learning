@@ -52,7 +52,7 @@ jobs:
         id: allure
         with:
           report_id: 'allure'
-          gh_pages: 'gh-pages'
+          gh_pages: '../gha-learning'
           report_dir: 'allure-results'
           list_dirs: true
   
