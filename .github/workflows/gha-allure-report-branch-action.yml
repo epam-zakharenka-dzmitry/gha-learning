@@ -49,7 +49,7 @@ jobs:
         id: allure
         with:
           report_id: 'allure'
-          gh_pages: 'gh-pages-dir'
+          gh_pages: 'gh-pages'
           report_dir: 'allure-results'
           list_dirs: true
   
@@ -57,5 +57,5 @@ jobs:
         uses: mgrybyk/git-commit-pull-push-action@v1
         if: always()
         with:
-          repository: gh-pages-dir
+          repository: gh-pages
           branch: gh-pages
