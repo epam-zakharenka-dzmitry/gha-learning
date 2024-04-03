@@ -50,21 +50,21 @@ jobs:
         with:
           ref: gh-pages # branch name
           path: gh-pages-dir # checkout path
-    
+
       - name: Allure Report Action
-        uses: mgrybyk/allure-report-branch-js-action@v1
+        uses: mgrybyk/allure-report-branch-js-action@v1.1.1
         if: always()
         continue-on-error: true
         id: allure # used in comment to PR
         with:
           report_id: 'self-test'
           gh_pages: 'gh-pages-dir'
-          report_dir: 'allure-results'
-    
-      - name: Publish test report
-        uses: peaceiris/actions-gh-pages@v3
+          report_dir: 'allure-raw'
+
+      - name: Git Commit and Push Action
+        uses: mgrybyk/git-commit-pull-push-action@v1.2.3
         if: always()
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: gh-pages-dir
+          repository: gh-pages-dir
+          branch: gh-pages
+          pull_args: --rebase -X ours
