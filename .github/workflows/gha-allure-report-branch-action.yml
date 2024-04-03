@@ -66,5 +66,5 @@ jobs:
         if: always()
         with:
           repository: gh-pages-dir
-          branch: ${{ github.head_ref }}
+          branch: gh-pages
           pull_args: --rebase -X ours
