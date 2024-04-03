@@ -56,6 +56,6 @@ jobs:
         uses: mgrybyk/git-commit-pull-push-action@v1
         if: always()
         with:
-          repository: gh-pages
+          #repository: gh-pages
           branch: gh-pages
           pull_args: --rebase -X ours
