@@ -48,9 +48,7 @@ jobs:
         continue-on-error: false
         id: allure
         with:
-          report_id: 'allure'
           gh_pages: 'gh-pages'
-          report_dir: 'allure-results'
           list_dirs: true
   
       - name: Git Commit and Push Action
