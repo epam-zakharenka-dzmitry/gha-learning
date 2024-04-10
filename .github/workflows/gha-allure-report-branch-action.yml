@@ -1,11 +1,13 @@
 name: gha-allure-report-branch-action
 
 on:
+  pull_request:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   build:
@@ -71,3 +73,14 @@ jobs:
           repository: gh-pages-dir
           branch: gh-pages
           pull_args: --rebase -X ours
+
+        # After publishing to gh-pages
+      - name: Comment PR with Allure Report link
+        if: ${{ always() && github.event_name == 'pull_request' && steps.allure.outputs.report_url }}
+        continue-on-error: true
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.allure.outputs.test_result_icon }} [Allure Report](${{ steps.allure.outputs.report_url }}) | [History](${{ steps.allure.outputs.report_history_url }})
+          comment_tag: allure_report
+          mode: recreate
